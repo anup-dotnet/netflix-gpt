@@ -10,6 +10,8 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { Netflix_BG } from "../utils/constants";
+import { Photo_URL } from "../utils/constants";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,11 +39,9 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
           updateProfile(user, {
             displayName: fullName.current.value,
-            photoURL:
-              "https://avatars.githubusercontent.com/u/63472959?s=400&u=c14b02dbbcb20388716a7ffc675a065c274c0a11&v=4",
+            photoURL: Photo_URL,
           })
             .then(() => {
                 const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -72,7 +72,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
           setErrorMessage(null);
           navigate("/browse");
           // ...
@@ -89,7 +88,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/058eee37-6c24-403a-95bd-7d85d3260ae1/e10ba8a6-b96a-4308-bee4-76fab1ebd6ca/IN-en-20240422-POP_SIGNUP_TWO_WEEKS-perspective_WEB_db9348f2-4d68-4934-b495-6d9d1be5917e_large.jpg"
+          src={Netflix_BG}
           alt="logo"
         />
       </div>
